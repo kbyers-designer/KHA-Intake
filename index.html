@@ -796,7 +796,7 @@ function collectFields() {
   const vaccines = getVaccines();
   const details = [
     `EMERGENCY CONTACT: ${document.getElementById("ecName").value.trim()} (${document.getElementById("ecRelation").value.trim()}) — ${document.getElementById("ecPhone").value.trim()}`,
-    `VET: ${document.getElementById("vetName").value.trim()}, ${document.getElementById("vetCity").value.trim()} — ${document.getElementById("vetPhone").value.trim()}`,
+    `VET: ${document.getElementById("vetName").value.trim()}, ${document.getElementById("vetCity").value.trim()} ${document.getElementById("vetPhone").value.trim()}`,
     `EMERGENCY VET: ${document.getElementById("vetEmergency").value.trim()}`,
     `AUTHORIZE VET CARE: ${document.getElementById("vetAuth").value}`,
     `BREED: ${document.getElementById("petBreed").value.trim()}`,
