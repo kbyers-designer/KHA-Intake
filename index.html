@@ -831,26 +831,24 @@ select {
     };
   }
 
-  async function submitForm() {
-    const btn = document.getElementById("submitBtn");
-    btn.disabled = true;
-    btn.textContent = "Submitting...";
-
-    const fields = collectFields();
-
-    try {
-      const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(TABLE_NAME)}`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${AIRTABLE_TOKEN}`,
-          "Content-Type":  "application/json"
-        },
-body: JSON.stringify({ fields, typecast: true })
-      });
-
-if (!res.ok) {
-  const err = await res.json();
-  throw new Error(err?.error?.message || "Submission failed");
+function submitForm() {
+    const formData = new FormData(document.querySelector('form'));
+    fetch('/submit', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 }
 
       document.querySelectorAll(".form-section").forEach(s => s.classList.remove("active"));
