@@ -845,7 +845,7 @@ select {
           "Authorization": `Bearer ${AIRTABLE_TOKEN}`,
           "Content-Type":  "application/json"
         },
-        body: JSON.stringify({ fields })
+body: JSON.stringify({ fields, typecast: true })
       });
 
 if (!res.ok) {
